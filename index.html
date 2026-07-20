@@ -17,6 +17,7 @@
     --dlpk:#2FB0A0;
     --sqpk:#D96BA0;
     --bnpk:#5BA36B;
+    --sbd:#C9962F;
     --build-dim:#28365a; --develop-dim:#54472a; --peak-dim:#54322a;
     --build-ink:#cdd9f4; --develop-ink:#f0dcaf; --peak-ink:#f3c2b8;
     --good:#5FB37A;
@@ -32,7 +33,7 @@
   :root[data-theme="light"]{
     --bg:#F1F2F5; --panel:#FFFFFF; --panel-2:#EAECEF; --hair:#DADDE2;
     --ink:#1B1E24; --muted:#5B626D; --muted-2:#949AA4;
-    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52;
+    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52; --sbd:#B0821F;
     --build-dim:#DCE6FA; --develop-dim:#F5E6C4; --peak-dim:#F7D8D1;
     --build-ink:#274a88; --develop-ink:#6c4c0d; --peak-ink:#8c2c1d;
     --good:#3E9E63;
@@ -256,10 +257,12 @@
   .btn-dlpk{background:var(--dlpk)}
   .btn-sqpk{background:var(--sqpk)}
   .btn-bnpk{background:var(--bnpk)}
+  .btn-sbd{background:var(--sbd)}
   #view-equipped .view-title .slash{color:var(--equip)}
   #view-deadlift .view-title .slash{color:var(--dlpk)}
   #view-squat .view-title .slash{color:var(--sqpk)}
   #view-bench .view-title .slash{color:var(--bnpk)}
+  #view-combined .view-title .slash{color:var(--sbd)}
 </style>
 </head>
 <body>
@@ -318,6 +321,13 @@
         <h3>Emm Bench Peak v1</h3>
         <p>An 8-week bench-only peak with TNG, paused, tempo and wide-grip work. Enter one bench 1RM and every set's weight is scaled from its programmed percentage. Includes a Clean export that hides the percentages.</p>
         <span class="btn-primary gc-go btn-bnpk">Open builder</span>
+      </button>
+      <button class="gen-card" data-go="combined">
+        <span class="accent" style="background:linear-gradient(90deg,var(--sqpk),var(--bnpk),var(--dlpk))"></span>
+        <span class="gc-tag">Squat + Bench + Deadlift · 8 weeks</span>
+        <h3>Emm SBD Peak v1</h3>
+        <p>Combines the Squat, Bench and Deadlift Peak v1 blocks into one 8-week program. Enter all three 1RMs and every session is merged by week and day, ending on a shared competition day. Includes a Clean export that hides the percentages.</p>
+        <span class="btn-primary gc-go btn-sbd">Open builder</span>
       </button>
     </div>
   </div>
@@ -501,6 +511,32 @@
         <button class="btn-primary btn-bnpk" id="bn-generate">Build the block</button>
         <button class="btn-ghost" id="bn-reset" style="display:none">Clear</button>
         <span class="msg" id="bn-msg"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== EMM SBD PEAK (combined) ===================== -->
+  <div class="view" id="view-combined">
+    <button class="backlink" data-go="hub">&larr; All builders</button>
+    <h2 class="view-title">Emm SBD Peak <span class="slash">/</span> v1</h2>
+    <p class="view-sub">Merges the Squat, Bench and Deadlift Peak v1 blocks into one 8-week program. Enter all three 1RMs; each row is scaled from its own programmed percentage and the sessions are ordered by week, then day, then lift (S → B → D), ending on a shared competition day in week 8. The <strong>Clean</strong> version strips the percentages from the notes so the lifter never sees how it was calculated.</p>
+    <div class="card" style="margin-top:18px">
+      <div class="card-head">
+        <h2>Lifter &amp; competition 1RMs</h2>
+        <span class="hint">kg · weights = % × 1RM</span>
+      </div>
+      <div class="grid">
+        <div class="field span"><label>Name</label><input id="cb-name" type="text" placeholder="e.g. Emm"></div>
+        <div class="field"><label>Block</label><input id="cb-block" type="text" placeholder="e.g. SBD Peak v1"></div>
+        <div class="field"><label>Class</label><input id="cb-class" type="text" placeholder="e.g. 74kg"></div>
+        <div class="field"><label>Squat 1RM <span class="unit">kg</span></label><input id="cb-squat" class="maxin" type="number" inputmode="decimal" placeholder="205"></div>
+        <div class="field"><label>Bench 1RM <span class="unit">kg</span></label><input id="cb-bench" class="maxin" type="number" inputmode="decimal" placeholder="165"></div>
+        <div class="field"><label>Deadlift 1RM <span class="unit">kg</span></label><input id="cb-dead" class="maxin" type="number" inputmode="decimal" placeholder="242.5"></div>
+      </div>
+      <div class="row-actions">
+        <button class="btn-primary btn-sbd" id="cb-generate">Build the program</button>
+        <button class="btn-ghost" id="cb-reset" style="display:none">Clear</button>
+        <span class="msg" id="cb-msg"></span>
       </div>
     </div>
   </div>
@@ -2469,6 +2505,16 @@ const EBN = [
   {w:8,d:2,wd:"Thursday",sets:[[75,2,3,"Bench Paused",null],[90,2,2,"Bench Paused",null]]},
   {w:8,d:4,comp:true,wd:"Saturday",sets:[[90,1,5,"Bench TNG",null],[110,1,3,"Bench TNG",null],[130,1,2,"Bench Paused",null],[155,1,1,"Bench Paused",null],[165,1,1,"Bench Paused",null]]},
 ];
+// Split a compound SBD movement name into the plain competition lift plus its
+// variation text, e.g. "Bench Super wide TNG, AMRAP" -> { base:"Bench",
+// variation:"Super wide TNG, AMRAP" } and "Bench TNG" -> { base:"Bench",
+// variation:"TNG" }. Names with no variation (or already plain) return an
+// empty variation. Works for Squat / Bench / Deadlift alike.
+function splitLift(ex){
+  const m = String(ex||"").match(/^(Squat|Bench|Deadlift)\b\s*(.*)$/);
+  if(!m) return { base:String(ex||"").trim(), variation:"" };
+  return { base:m[1], variation:m[2].trim() };
+}
 function benchProgram(max){
   const round = w => Math.round(w/2.5)*2.5;
   const rows = [];
@@ -2476,12 +2522,14 @@ function benchProgram(max){
     const dayLabel = blk.comp ? ("COMP DAY" + (blk.wd ? ` (${blk.wd})` : "")) : (blk.wd || null);
     blk.sets.forEach((st,i)=>{
       const [w165, sets, reps, ex, rpe] = st;
+      const { base, variation } = splitLift(ex);   // "Bench" + variation -> Notes
       const wt  = fmtW(round(w165 * max / EBN_REF));
       const pct = Math.round(w165 / EBN_REF * 100);
       const parts = [];
       if(i===0 && dayLabel) parts.push(dayLabel);
+      if(variation) parts.push(variation);
       parts.push(`${pct}% 1RM`);
-      rows.push({ Week:blk.w, Day:blk.d, Exercise:ex,
+      rows.push({ Week:blk.w, Day:blk.d, Exercise:base,
                   "Weight (kg)":wt, Sets:sets, Reps:reps,
                   Rpe:(rpe!=null?rpe:""), Notes:parts.join(" · ") });
     });
@@ -2513,12 +2561,55 @@ function benchCSV(opts, rows){
   return out;
 }
 
+/* ===================== Emm SBD Peak v1 (combined) ===================== */
+function combinedProgram(sqMax, bnMax, dlMax){
+  const liftKey = ex => ex && ex.indexOf("Squat")===0 ? 0 : (ex && ex.indexOf("Bench")===0 ? 1 : 2);
+  const tagged = [];
+  const add = rows => rows.forEach((r,i)=> tagged.push(Object.assign({Rpe:""}, r, {_lift:liftKey(r.Exercise), _seq:i})));
+  add(squatProgram(sqMax).rows);
+  add(benchProgram(bnMax).rows);
+  add(emmDLProgram(dlMax).rows);
+  tagged.sort((a,b)=> (a.Week-b.Week) || (a.Day-b.Day) || (a._lift-b._lift) || (a._seq-b._seq));
+  const rows = tagged.map(t=>{ const {_lift,_seq,...r}=t; return r; });
+  return { rows,
+    maxLines:[ {label:"Squat 1RM", val:fmtW(sqMax)},
+               {label:"Bench 1RM", val:fmtW(bnMax)},
+               {label:"Deadlift 1RM", val:fmtW(dlMax)} ],
+    weekCount:8 };
+}
+// strip the "% 1RM" / "% TM" calculation from a note, keeping labels
+function combinedStripPct(note){
+  let s = String(note);
+  s = s.replace(/\d+(?:\.\d+)?%\s*(?:1RM|TM)/g, "");
+  s = s.replace(/\s*·\s*/g, " · ");
+  s = s.replace(/(?:\s*·\s*)+/g, " · ");
+  s = s.replace(/^\s*·\s*/, "").replace(/\s*·\s*$/, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+function combinedCleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: combinedStripPct(r.Notes) }));
+}
+function combinedCSV(opts, rows){
+  const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
+  let out="";
+  out += q(["#Program","Emm SBD Peak v1"]);
+  out += q(["#Name",opts.name]);
+  out += q(["#Block",opts.block]);
+  if(opts.cls) out += q(["#Class",opts.cls]);
+  out += q(["#Max Squat",fmtW(opts.sqMax)]);
+  out += q(["#Max Bench",fmtW(opts.bnMax)]);
+  out += q(["#Max Deadlift",fmtW(opts.dlMax)]);
+  out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","RPE","Notes"]);
+  for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Rpe,r.Notes]);
+  return out;
+}
+
 /* ===================== shared preview engine ===================== */
 function escapeHTML(s){ return String(s).replace(/[&<>]/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c])); }
 function sanitize(s){ return (s||"").trim().replace(/[^\w.-]+/g,"_").replace(/^_+|_+$/g,""); }
 
 let ctx = null;                          // active preview context
-const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null }; // last-built context per generator
+const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null, combined:null }; // last-built context per generator
 
 function splitCSV(text){
   // -> { meta:[raw # lines], header:[cells], body:[[cells]...], idx:{col->index} }
@@ -2664,6 +2755,7 @@ const EMPTY_TXT = {
   deadlift:{ big:"No peak yet",   sub:"Enter a deadlift 1RM, then build the deadlift peak." },
   squat:   { big:"No block yet",  sub:"Enter a squat 1RM, then build the 8-week squat peak." },
   bench:   { big:"No block yet",  sub:"Enter a bench 1RM, then build the 8-week bench peak." },
+  combined:{ big:"No program yet", sub:"Enter squat, bench &amp; deadlift 1RMs, then build the combined SBD peak." },
 };
 function showView(name){
   document.querySelectorAll(".view").forEach(v=> v.classList.remove("active"));
@@ -2991,6 +3083,50 @@ function benchReset(){
   $("bn-name").focus();
 }
 
+function buildCombined(){
+  const sqMax = parseFloat($("cb-squat").value);
+  const bnMax = parseFloat($("cb-bench").value);
+  const dlMax = parseFloat($("cb-dead").value);
+  const checks = [["cb-squat",sqMax],["cb-bench",bnMax],["cb-dead",dlMax]];
+  let ok = true;
+  checks.forEach(([id,v])=>{ const good=Number.isFinite(v)&&v>0; $(id).closest(".field").classList.toggle("invalid",!good); if(!good) ok=false; });
+  if(!ok){ $("cb-msg").textContent = "Enter all three 1RMs in kg."; return; }
+  $("cb-msg").textContent = "";
+  const name  = $("cb-name").value.trim()  || "Lifter";
+  const block = $("cb-block").value.trim() || "SBD Peak v1";
+  const cls   = $("cb-class").value.trim();
+  const opts  = { name, block, cls, sqMax, bnMax, dlMax };
+  const built    = combinedProgram(sqMax, bnMax, dlMax);
+  const fullCSV  = combinedCSV(opts, built.rows);
+  const cleanCSV = combinedCSV(opts, combinedCleanRows(built.rows));
+  const c = {
+    program:"combined",
+    meta:{ name, block, cls, maxLines: built.maxLines },
+    variants:[ {id:"program", label:"Program", csv:fullCSV,  showRPE:true, suffix:""},
+               {id:"clean",   label:"Clean",   csv:cleanCSV, showRPE:true, suffix:"_clean"} ],
+    active:"program", weekCount:8, mapTitle:"Program map",
+    phaseOf:(w)=> w<=3 ? "build" : (w<=6 ? "develop" : "peak"),
+    ribbon:[
+      {label:"Base",  dotColor:"var(--build)",   weeks:[1,2,3]},
+      {label:"Build", dotColor:"var(--develop)", weeks:[4,5,6]},
+      {label:"Peak",  dotColor:"var(--peak)",    weeks:[7,8]},
+    ],
+    weekTitle:(w)=> `Week ${w}`,
+  };
+  CTX.combined = c;
+  $("cb-reset").style.display = "inline-block";
+  mountCtx(c, true);
+}
+function combinedReset(){
+  ["cb-name","cb-block","cb-class","cb-squat","cb-bench","cb-dead"].forEach(id=> $(id).value="");
+  document.querySelectorAll("#view-combined .field.invalid").forEach(f=> f.classList.remove("invalid"));
+  CTX.combined = null; ctx = null;
+  $("cb-reset").style.display = "none"; $("cb-msg").textContent = "";
+  $("results").style.display = "none"; $("empty").style.display = "block";
+  $("empty").innerHTML = `<div class="big">${EMPTY_TXT.combined.big}</div>${EMPTY_TXT.combined.sub}`;
+  $("cb-name").focus();
+}
+
 /* ===================== bindings ===================== */
 document.querySelectorAll("[data-go]").forEach(el=> el.onclick = ()=> showView(el.dataset.go));
 $("btn-generate").onclick = buildGustav;
@@ -3005,6 +3141,8 @@ $("sq-generate").onclick  = buildSquat;
 $("sq-reset").onclick     = squatReset;
 $("bn-generate").onclick  = buildBench;
 $("bn-reset").onclick     = benchReset;
+$("cb-generate").onclick  = buildCombined;
+$("cb-reset").onclick     = combinedReset;
 $("btn-export").onclick   = exportActive;
 $("chip-all").onclick     = ()=>{ if(!ctx) return; ctx.week=null; syncRibbon(); renderPreview(); };
 
@@ -3027,6 +3165,7 @@ const EQUIP_FIELDS   = ["e-name","e-block","e-class","e-rsquat","e-rbench","e-rd
 const DL_FIELDS      = ["d-name","d-block","d-class","d-max"];
 const SQUAT_FIELDS   = ["sq-name","sq-block","sq-class","sq-max"];
 const BENCH_FIELDS   = ["bn-name","bn-block","bn-class","bn-max"];
+const COMBO_FIELDS   = ["cb-name","cb-block","cb-class","cb-squat","cb-bench","cb-dead"];
 document.addEventListener("keydown", e=>{
   if(e.key !== "Enter") return;
   const id = document.activeElement.id;
@@ -3036,6 +3175,7 @@ document.addEventListener("keydown", e=>{
   else if(DL_FIELDS.includes(id)) buildDeadlift();
   else if(SQUAT_FIELDS.includes(id)) buildSquat();
   else if(BENCH_FIELDS.includes(id)) buildBench();
+  else if(COMBO_FIELDS.includes(id)) buildCombined();
 });
 
 /* ===================== theme (light / dark) ===================== */
