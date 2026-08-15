@@ -18,6 +18,9 @@
     --sqpk:#D96BA0;
     --bnpk:#5BA36B;
     --sbd:#C9962F;
+    --lilb:#D9663F;
+    --bnpk2:#6C7BE0;
+    --lsbd:#B849B0;
     --build-dim:#28365a; --develop-dim:#54472a; --peak-dim:#54322a;
     --build-ink:#cdd9f4; --develop-ink:#f0dcaf; --peak-ink:#f3c2b8;
     --good:#5FB37A;
@@ -33,7 +36,7 @@
   :root[data-theme="light"]{
     --bg:#F1F2F5; --panel:#FFFFFF; --panel-2:#EAECEF; --hair:#DADDE2;
     --ink:#1B1E24; --muted:#5B626D; --muted-2:#949AA4;
-    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52; --sbd:#B0821F;
+    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52; --sbd:#B0821F; --lilb:#C4552F; --bnpk2:#4E5DC4; --lsbd:#9A3A94;
     --build-dim:#DCE6FA; --develop-dim:#F5E6C4; --peak-dim:#F7D8D1;
     --build-ink:#274a88; --develop-ink:#6c4c0d; --peak-ink:#8c2c1d;
     --good:#3E9E63;
@@ -258,11 +261,19 @@
   .btn-sqpk{background:var(--sqpk)}
   .btn-bnpk{background:var(--bnpk)}
   .btn-sbd{background:var(--sbd)}
+  .btn-lilb{background:var(--lilb)}
+  .btn-bnpk2{background:var(--bnpk2)}
+  .btn-lsbd{background:var(--lsbd)}
+  #view-lilliebridge .opt input[type=checkbox]{accent-color:var(--lilb)}
   #view-equipped .view-title .slash{color:var(--equip)}
   #view-deadlift .view-title .slash{color:var(--dlpk)}
   #view-squat .view-title .slash{color:var(--sqpk)}
   #view-bench .view-title .slash{color:var(--bnpk)}
   #view-combined .view-title .slash{color:var(--sbd)}
+  #view-lilliebridge .view-title .slash{color:var(--lilb)}
+  #view-bench2 .view-title .slash{color:var(--bnpk2)}
+  #view-lilliesbd .view-title .slash{color:var(--lsbd)}
+  #view-lilliesbd .opt input[type=checkbox]{accent-color:var(--lsbd)}
 </style>
 </head>
 <body>
@@ -322,12 +333,33 @@
         <p>An 8-week bench-only peak with TNG, paused, tempo and wide-grip work. Enter one bench 1RM and every set's weight is scaled from its programmed percentage. Includes a Clean export that hides the percentages.</p>
         <span class="btn-primary gc-go btn-bnpk">Open builder</span>
       </button>
+      <button class="gen-card" data-go="bench2">
+        <span class="accent" style="background:linear-gradient(90deg,var(--bnpk2),var(--bnpk))"></span>
+        <span class="gc-tag">Bench only · 14 weeks</span>
+        <h3>Emm Bench Peak v2</h3>
+        <p>A 14-week rebuild of the v1 bench peak. Paired accumulation micro-blocks, an intensification run of rising top singles, a four-session overreach week with a tempo-to-fail AMRAP above 100%, then the peak — closing with a week 13 taper that tests the opener and a week 14 deload. Includes a Clean export that hides the percentages.</p>
+        <span class="btn-primary gc-go btn-bnpk2">Open builder</span>
+      </button>
       <button class="gen-card" data-go="combined">
         <span class="accent" style="background:linear-gradient(90deg,var(--sqpk),var(--bnpk),var(--dlpk))"></span>
         <span class="gc-tag">Squat + Bench + Deadlift · 8 weeks</span>
         <h3>Emm SBD Peak v1</h3>
         <p>Combines the Squat, Bench and Deadlift Peak v1 blocks into one 8-week program. Enter all three 1RMs and every session is merged by week and day, ending on a shared competition day. Includes a Clean export that hides the percentages.</p>
         <span class="btn-primary gc-go btn-sbd">Open builder</span>
+      </button>
+      <button class="gen-card" data-go="lilliebridge">
+        <span class="accent" style="background:linear-gradient(90deg,var(--lilb),var(--peak))"></span>
+        <span class="gc-tag">Eric Lilliebridge · Squat + Deadlift · 14 weeks</span>
+        <h3>Lilliebridge 14-Week</h3>
+        <p>The Lilliebridge Method for squat and deadlift — a heavy opening single, volume back-offs, paused and deficit work, then a top set that climbs through AMRAP waves (87 → 94%) into heavy singles (96 → 98%) before a 92% taper and a deload. Enter both 1RMs and every set is scaled from its programmed percentage. Light day-1 speed pulls even out deadlift frequency in the weeks that pull only once. Accessory work is appended after each squat and deadlift day through week 11, and a Clean export hides the percentages.</p>
+        <span class="btn-primary gc-go btn-lilb">Open builder</span>
+      </button>
+      <button class="gen-card" data-go="lilliesbd">
+        <span class="accent" style="background:linear-gradient(90deg,var(--lsbd),var(--lilb),var(--bnpk2))"></span>
+        <span class="gc-tag">Squat + Bench + Deadlift · 14 weeks</span>
+        <h3>Lilliebridge SBD 14-Week</h3>
+        <p>The Lilliebridge squat and deadlift block merged with Bench Peak v2 into one full-power program. Lilliebridge never uses day 3, so it becomes the dedicated heavy bench day; day 4 stays reserved for the super-heavy squat or pull and only ever takes the lightest bench session. Volume bench sits on days 1&ndash;2, kept off day 1 where the squat volume already lives.</p>
+        <span class="btn-primary gc-go btn-lsbd">Open builder</span>
       </button>
     </div>
   </div>
@@ -515,6 +547,37 @@
     </div>
   </div>
 
+  <!-- ===================== EMM BENCH PEAK v2 ===================== -->
+  <div class="view" id="view-bench2">
+    <button class="backlink" data-go="hub">&larr; All builders</button>
+    <h2 class="view-title">Emm Bench Peak <span class="slash">/</span> v2</h2>
+    <p class="view-sub">A 14-week bench-only peak built on the v1 template. Weeks 1&ndash;6 pair an A/B accumulation micro-block and run it three times, the second wave two percent heavier. Weeks 7&ndash;10 intensify, walking the top single 94 &rarr; 98% while volume falls away. Week 11 is a four-session overreach with a tempo-to-fail AMRAP above 100% and a super-wide AMRAP; week 12 peaks on a paused single at 98%. Week&nbsp;13 tapers to light technique work and a tested opener at 92%, and week&nbsp;14 deloads. Enter one bench 1RM and every set's weight is scaled from its programmed percentage, rounded to 2.5kg. The <strong>Clean</strong> version exports the same program with the percentages stripped from the notes, so the lifter never sees how it was calculated.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--build)"></i>Accumulation · wk 1&ndash;6</span>
+      <span><i class="dot" style="background:var(--develop)"></i>Intensify · wk 7&ndash;10</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Overreach &amp; peak · wk 11&ndash;12</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Taper &amp; opener · wk 13</span>
+      <span><i class="dot" style="background:var(--deload-badge)"></i>Deload · wk 14</span>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-head">
+        <h2>Lifter &amp; bench 1RM</h2>
+        <span class="hint">kg · weights = % × 1RM</span>
+      </div>
+      <div class="grid">
+        <div class="field span"><label>Name</label><input id="b2-name" type="text" placeholder="e.g. Emm"></div>
+        <div class="field"><label>Block</label><input id="b2-block" type="text" placeholder="e.g. Bench Peak v2"></div>
+        <div class="field"><label>Class</label><input id="b2-class" type="text" placeholder="e.g. 74kg"></div>
+        <div class="field"><label>Bench 1RM <span class="unit">kg</span></label><input id="b2-max" class="maxin" type="number" inputmode="decimal" placeholder="165"></div>
+      </div>
+      <div class="row-actions">
+        <button class="btn-primary btn-bnpk2" id="b2-generate">Build the block</button>
+        <button class="btn-ghost" id="b2-reset" style="display:none">Clear</button>
+        <span class="msg" id="b2-msg"></span>
+      </div>
+    </div>
+  </div>
+
   <!-- ===================== EMM SBD PEAK (combined) ===================== -->
   <div class="view" id="view-combined">
     <button class="backlink" data-go="hub">&larr; All builders</button>
@@ -537,6 +600,79 @@
         <button class="btn-primary btn-sbd" id="cb-generate">Build the program</button>
         <button class="btn-ghost" id="cb-reset" style="display:none">Clear</button>
         <span class="msg" id="cb-msg"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== LILLIEBRIDGE 8-WEEK ===================== -->
+  <div class="view" id="view-lilliebridge">
+    <button class="backlink" data-go="hub">&larr; All builders</button>
+    <h2 class="view-title">Lilliebridge <span class="slash">/</span> 14-Week</h2>
+    <p class="view-sub">Eric Lilliebridge's squat and deadlift block, weeks 1&ndash;14. Three sessions a week: a squat volume day, a secondary paused/deficit day, and a heavy day that alternates squat and deadlift week to week. The top set climbs through AMRAP waves (87 &rarr; 90 &rarr; 92 &rarr; 94%) into heavy singles (96 &rarr; 98%), then tapers at 92% before the week&nbsp;14 deload. Enter both 1RMs and every set's weight is scaled from its programmed percentage, rounded to 2.5kg. In the weeks whose heavy pull falls on day 4 the lifter otherwise deadlifts only once, so a light speed pull is added to day&nbsp;1 for frequency &mdash; dynamic-effort doubles at 55&ndash;65%, placed after the squat volume and scaled down as the day-4 top set climbs. Accessory work runs after every squat and deadlift day through week&nbsp;11, then drops away so the heavy singles, taper and deload stay clean. The <strong>Clean</strong> version exports the same program with the percentages stripped from the notes, so the lifter never sees how it was calculated.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--build)"></i>Volume waves · wk 1&ndash;4 · 87&ndash;90%</span>
+      <span><i class="dot" style="background:var(--develop)"></i>Intensify · wk 5&ndash;8 · 92&ndash;94%</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Heavy singles · wk 9&ndash;12 · 96&ndash;98%</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Taper · wk 13 · 92%</span>
+      <span><i class="dot" style="background:var(--deload-badge)"></i>Deload · wk 14 · 50%</span>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-head">
+        <h2>Lifter &amp; competition 1RMs</h2>
+        <span class="hint">kg · weights = % × 1RM</span>
+      </div>
+      <div class="grid">
+        <div class="field span"><label>Name</label><input id="lb-name" type="text" placeholder="e.g. Emm"></div>
+        <div class="field"><label>Block</label><input id="lb-block" type="text" placeholder="e.g. Lilliebridge 14-Week"></div>
+        <div class="field"><label>Class</label><input id="lb-class" type="text" placeholder="e.g. 74kg"></div>
+        <div class="field"><label>Squat 1RM <span class="unit">kg</span></label><input id="lb-squat" class="maxin" type="number" inputmode="decimal" placeholder="205"></div>
+        <div class="field"><label>Deadlift 1RM <span class="unit">kg</span></label><input id="lb-dead" class="maxin" type="number" inputmode="decimal" placeholder="242.5"></div>
+      </div>
+      <div class="opts">
+        <label class="opt check"><input type="checkbox" id="lb-acc" checked><span style="font-size:13px;color:var(--muted)">Accessory work after every squat / deadlift day <span style="color:var(--muted-2)">· weeks 1&ndash;11 only</span></span></label>
+        <label class="opt check"><input type="checkbox" id="lb-freq" checked><span style="font-size:13px;color:var(--muted)">Day-1 deadlift frequency work <span style="color:var(--muted-2)">· wk 2, 4, 6, 8, 10, 12</span></span></label>
+      </div>
+      <div class="row-actions">
+        <button class="btn-primary btn-lilb" id="lb-generate">Build the block</button>
+        <button class="btn-ghost" id="lb-reset" style="display:none">Clear</button>
+        <span class="msg" id="lb-msg"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== LILLIEBRIDGE SBD (combined) ===================== -->
+  <div class="view" id="view-lilliesbd">
+    <button class="backlink" data-go="hub">&larr; All builders</button>
+    <h2 class="view-title">Lilliebridge SBD <span class="slash">/</span> 14-Week</h2>
+    <p class="view-sub">Merges the 14-week Lilliebridge squat and deadlift block with Emm Bench Peak v2. Lilliebridge only ever trains days 1, 2 and 4, so <strong>day 3 becomes the dedicated heavy bench day</strong> &mdash; the most intense bench session of each week sits there on its own. <strong>Day 4</strong> holds the super-heavy squat or deadlift, so it only ever receives the week's <em>lightest</em> bench session, and only in weeks that have four of them. Volume bench goes on days 1&ndash;2, with the lighter session on day 1 since the Lilliebridge squat volume is already there. Enter all three 1RMs; every row scales from its own programmed percentage. The <strong>Clean</strong> version strips the percentages from the notes.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--build)"></i>Accumulation · wk 1&ndash;4</span>
+      <span><i class="dot" style="background:var(--develop)"></i>Development · wk 5&ndash;10</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Peak · wk 11&ndash;12</span>
+      <span><i class="dot" style="background:var(--peak)"></i>Taper &amp; opener · wk 13</span>
+      <span><i class="dot" style="background:var(--deload-badge)"></i>Deload · wk 14</span>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-head">
+        <h2>Lifter &amp; competition 1RMs</h2>
+        <span class="hint">kg · weights = % × 1RM</span>
+      </div>
+      <div class="grid">
+        <div class="field span"><label>Name</label><input id="ls-name" type="text" placeholder="e.g. Emm"></div>
+        <div class="field"><label>Block</label><input id="ls-block" type="text" placeholder="e.g. Lilliebridge SBD"></div>
+        <div class="field"><label>Class</label><input id="ls-class" type="text" placeholder="e.g. 74kg"></div>
+        <div class="field"><label>Squat 1RM <span class="unit">kg</span></label><input id="ls-squat" class="maxin" type="number" inputmode="decimal" placeholder="205"></div>
+        <div class="field"><label>Bench 1RM <span class="unit">kg</span></label><input id="ls-bench" class="maxin" type="number" inputmode="decimal" placeholder="165"></div>
+        <div class="field"><label>Deadlift 1RM <span class="unit">kg</span></label><input id="ls-dead" class="maxin" type="number" inputmode="decimal" placeholder="242.5"></div>
+      </div>
+      <div class="opts">
+        <label class="opt check"><input type="checkbox" id="ls-acc" checked><span style="font-size:13px;color:var(--muted)">Squat / deadlift accessory work <span style="color:var(--muted-2)">· weeks 1&ndash;11 only</span></span></label>
+        <label class="opt check"><input type="checkbox" id="ls-freq" checked><span style="font-size:13px;color:var(--muted)">Day-1 deadlift frequency work <span style="color:var(--muted-2)">· wk 2, 4, 6, 8, 10, 12</span></span></label>
+      </div>
+      <div class="row-actions">
+        <button class="btn-primary btn-lsbd" id="ls-generate">Build the program</button>
+        <button class="btn-ghost" id="ls-reset" style="display:none">Clear</button>
+        <span class="msg" id="ls-msg"></span>
       </div>
     </div>
   </div>
@@ -2561,6 +2697,201 @@ function benchCSV(opts, rows){
   return out;
 }
 
+/* ===================== Emm Bench Peak v2 (14 weeks) =====================
+   A 14-week extension of the v1 bench peak, keeping v1's shape: paired A/B
+   accumulation micro-blocks, an intensification run of rising top singles, a
+   four-session overreach week with a tempo-to-fail AMRAP over 100%, then the
+   peak. Weeks 13 and 14 are the taper (light technique + an opener test) and a
+   deload. Unlike v1, which stored literal kilos against a 165kg sample lifter,
+   v2 stores percentages of the lifter's own 1RM directly — same output format,
+   no rounding drift when the max differs from the sample. */
+const EBN2 = [
+  {w:1,d:1,sets:[[80,1,1,"Bench TNG",null],[85,2,4,"Bench TNG",null],[85,1,3,"Bench TNG",null],[67,2,8,"Bench TNG",null]]},
+  {w:1,d:2,sets:[[83,1,2,"Bench TNG",null],[88,1,2,"Bench TNG",null],[64,2,5,"Bench TNG",null]]},
+
+  {w:2,d:1,sets:[[82,1,1,"Bench TNG",null],[67,2,3,"Bench TNG",null]]},
+  {w:2,d:2,sets:[[82,1,1,"Bench TNG",null],[88,1,1,"Bench TNG",null],[91,1,2,"Bench TNG",10],[88,1,1,"Bench TNG",9],[76,1,2,"Bench TNG",null],[70,3,6,"Bench TNG",null],[76,1,3,"Bench TNG",null],[85,1,3,"Bench TNG",null]]},
+  {w:2,d:3,sets:[[82,1,1,"Bench TNG",null],[85,2,3,"Bench TNG",null]]},
+
+  {w:3,d:1,sets:[[80,1,1,"Bench TNG",null],[85,2,4,"Bench TNG",null],[85,1,3,"Bench TNG",null],[67,2,8,"Bench TNG",null]]},
+  {w:3,d:2,sets:[[83,1,2,"Bench TNG",null],[88,1,2,"Bench TNG",null],[64,2,5,"Bench TNG",null]]},
+
+  {w:4,d:1,sets:[[82,1,1,"Bench TNG",null],[67,2,3,"Bench TNG",null]]},
+  {w:4,d:2,sets:[[82,1,1,"Bench TNG",null],[88,1,1,"Bench TNG",null],[91,1,2,"Bench TNG",10],[88,1,1,"Bench TNG",9],[76,1,2,"Bench TNG",null],[70,3,6,"Bench TNG",null],[76,1,3,"Bench TNG",null],[85,1,3,"Bench TNG",null]]},
+  {w:4,d:3,sets:[[82,1,1,"Bench TNG",null],[85,2,3,"Bench TNG",null]]},
+
+  {w:5,d:1,sets:[[82,1,1,"Bench TNG",null],[87,2,4,"Bench TNG",null],[87,1,3,"Bench TNG",null],[69,2,8,"Bench TNG",null]]},
+  {w:5,d:2,sets:[[85,1,2,"Bench TNG",null],[90,1,2,"Bench TNG",null],[66,2,5,"Bench TNG",null]]},
+
+  {w:6,d:1,sets:[[84,1,1,"Bench TNG",null],[69,2,3,"Bench TNG",null]]},
+  {w:6,d:2,sets:[[84,1,1,"Bench TNG",null],[90,1,1,"Bench TNG",null],[93,1,2,"Bench TNG",10],[90,1,1,"Bench TNG",9],[78,1,2,"Bench TNG",null],[72,3,6,"Bench TNG",null],[78,1,3,"Bench TNG",null],[87,1,3,"Bench TNG",null]]},
+  {w:6,d:3,sets:[[84,1,1,"Bench TNG",null],[87,2,3,"Bench TNG",null]]},
+
+  {w:7,d:1,sets:[[79,1,1,"Bench TNG",null],[85,1,1,"Bench TNG",null],[76,1,2,"Bench TNG",null],[67,3,6,"Bench TNG",null]]},
+  {w:7,d:2,sets:[[64,1,6,"Bench TNG",null],[70,1,10,"Bench TNG",null]]},
+  {w:7,d:3,sets:[[79,1,1,"Bench TNG",null],[85,1,2,"Bench TNG",null],[91,1,2,"Bench TNG",null],[94,1,1,"Bench TNG",null],[73,2,8,"Bench TNG",null]]},
+
+  {w:8,d:1,sets:[[79,1,1,"Bench TNG",null],[85,1,2,"Bench TNG",null],[73,2,7,"Bench TNG",null],[67,1,8,"Bench TNG",null]]},
+  {w:8,d:2,sets:[[79,1,1,"Bench TNG",null],[88,1,1,"Bench TNG",null],[94,1,1,"Bench TNG",null],[97,1,1,"Bench TNG",null]]},
+  {w:8,d:3,sets:[[76,1,2,"Bench Paused",null],[70,3,5,"Bench Paused",null]]},
+
+  {w:9,d:1,sets:[[80,1,1,"Bench TNG",null],[87,1,1,"Bench TNG",null],[78,1,2,"Bench TNG",null],[69,3,6,"Bench TNG",null]]},
+  {w:9,d:2,sets:[[66,1,6,"Bench TNG",null],[72,1,8,"Bench TNG",null]]},
+  {w:9,d:3,sets:[[80,1,1,"Bench TNG",null],[87,1,2,"Bench TNG",null],[93,1,2,"Bench TNG",9],[96,1,1,"Bench TNG",null],[75,2,7,"Bench TNG",null]]},
+
+  {w:10,d:1,sets:[[80,1,1,"Bench TNG",null],[87,1,2,"Bench TNG",null],[75,2,6,"Bench TNG",null],[69,1,8,"Bench TNG",null]]},
+  {w:10,d:2,sets:[[80,1,1,"Bench TNG",null],[90,1,1,"Bench TNG",null],[96,1,1,"Bench TNG",null],[98,1,1,"Bench TNG",9]]},
+  {w:10,d:3,sets:[[78,1,2,"Bench Paused",null],[72,3,5,"Bench Paused",null]]},
+
+  {w:11,d:1,wd:"Monday",sets:[[79,1,2,"Bench TNG",null],[88,1,1,"Bench Paused",null],[94,1,1,"Bench TNG",null],[98,1,1,"Bench TNG",null],[103,1,"AMRAP","Bench Tempo to Fail",null],[67,1,8,"Bench Paused",null]]},
+  {w:11,d:2,wd:"Wednesday",sets:[[79,1,2,"Bench TNG",null],[88,1,1,"Bench TNG",null],[94,1,2,"Bench TNG",null],[91,1,2,"Bench TNG",null],[73,1,6,"Bench TNG",null],[76,1,6,"Bench Paused",null],[73,1,5,"Bench Paused",null],[55,1,15,"Bench Super wide TNG, AMRAP",null]]},
+  {w:11,d:3,wd:"Thursday",sets:[[79,1,2,"Bench TNG",null],[85,1,1,"Bench TNG",null],[76,2,7,"Bench TNG",null],[76,2,6,"Bench TNG",null]]},
+  {w:11,d:4,wd:"Saturday",sets:[[45,2,3,"Bench Paused",null],[50,2,2,"Bench Paused",null]]},
+
+  {w:12,d:1,wd:"Tuesday",sets:[[55,1,5,"Bench TNG",null],[67,1,3,"Bench TNG",null],[80,1,2,"Bench TNG",null],[88,1,1,"Bench TNG",null],[73,7,4,"Bench Paused",null]]},
+  {w:12,d:2,wd:"Thursday",sets:[[45,2,3,"Bench Paused",null],[55,2,2,"Bench Paused",null]]},
+  {w:12,d:3,wd:"Saturday",tag:"TOP SINGLE",sets:[[55,1,5,"Bench TNG",null],[67,1,3,"Bench TNG",null],[80,1,2,"Bench Paused",null],[91,1,1,"Bench Paused",null],[98,1,1,"Bench Paused",9]]},
+
+  {w:13,d:1,wd:"Tuesday",sets:[[55,1,5,"Bench TNG",null],[67,1,3,"Bench TNG",null],[76,1,3,"Bench TNG",6]]},
+  {w:13,d:3,wd:"Saturday",tag:"OPENER TEST",sets:[[55,1,5,"Bench TNG",null],[67,1,3,"Bench TNG",null],[79,1,2,"Bench Paused",null],[88,1,1,"Bench Paused",null],[92,1,1,"Bench Paused",7]]},
+
+  {w:14,d:1,wd:"Tuesday",sets:[[45,2,3,"Bench Paused",null],[55,2,2,"Bench Paused",null]]},
+  {w:14,d:2,wd:"Thursday",sets:[[40,2,3,"Bench Paused",null]]},
+];
+function bench2Program(max, opts){
+  const dayMap = (opts && opts.dayMap) || null;      // remap sessions onto other days
+  const showWd = !opts || opts.weekdays !== false;   // weekday labels off when merged
+  const round = w => Math.round(w/2.5)*2.5;
+  const rows = [];
+  for(const blk of EBN2){
+    const day = dayMap ? dayMap[blk.w + "-" + blk.d] : blk.d;
+    const wd  = showWd ? blk.wd : null;
+    // the weekday belongs to the session, so it rides on the first set — but a tag
+    // like OPENER TEST names a specific attempt, so it belongs on the heaviest set
+    let tagAt = -1;
+    if(blk.tag){
+      let best = -Infinity;
+      blk.sets.forEach((st,i)=>{ if(st[0] > best){ best = st[0]; tagAt = i; } });
+    }
+    blk.sets.forEach((st,i)=>{
+      const [pct, sets, reps, ex, rpe] = st;
+      const { base, variation } = splitLift(ex);   // "Bench" + variation -> Notes
+      const parts = [];
+      if(i===0 && wd) parts.push(wd);
+      if(i===tagAt) parts.push(blk.tag);
+      if(variation) parts.push(variation);
+      parts.push(`${pct}% 1RM`);
+      rows.push({ Week:blk.w, Day:day, Exercise:base,
+                  "Weight (kg)":fmtW(round(pct/100 * max)),
+                  Sets:sets, Reps:reps,
+                  Rpe:(rpe!=null?rpe:""), Notes:parts.join(" · ") });
+    });
+  }
+  return { rows, maxLines:[{label:"Bench 1RM", val:fmtW(max)}], weekCount:14 };
+}
+// strip the "% 1RM" calculation from a note, keeping day / label text
+function bench2StripPct(note){
+  let s = String(note);
+  s = s.replace(/\d+(?:\.\d+)?%\s*1RM/g, "");
+  s = s.replace(/\s*·\s*/g, " · ");
+  s = s.replace(/(?:\s*·\s*)+/g, " · ");
+  s = s.replace(/^\s*·\s*/, "").replace(/\s*·\s*$/, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+function bench2CleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: bench2StripPct(r.Notes) }));
+}
+function bench2CSV(opts, rows){
+  const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
+  let out="";
+  out += q(["#Program","Emm Bench Peak v2 (14 weeks)"]);
+  out += q(["#Name",opts.name]);
+  out += q(["#Block",opts.block]);
+  if(opts.cls) out += q(["#Class",opts.cls]);
+  out += q(["#Max","Bench",fmtW(opts.max)]);
+  out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","RPE","Notes"]);
+  for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Rpe,r.Notes]);
+  return out;
+}
+
+/* ===================== Lilliebridge SBD 14-Week (Lilliebridge + Bench v2) =====
+   Lilliebridge only ever uses days 1, 2 and 4, so day 3 is free all block and
+   becomes the dedicated heavy bench slot. Bench v2's sessions are re-slotted per
+   week by intensity rather than kept on their original days:
+
+     · the week's most intense bench session  -> day 3 (its own day, nothing else)
+     · day 4 is the super-heavy squat or deadlift, so it only ever receives the
+       week's *lightest* bench session, and only when the week has four of them
+     · what's left goes to days 1 and 2, lightest onto day 1 because day 1 already
+       carries the Lilliebridge squat volume; a lone leftover goes to day 2 so
+       day 1 stays clear
+     · a pure deload week (nothing above 60%) has no intense session to protect,
+       so its sessions just fall on days 1..n
+
+   Within a day the order is main squat/deadlift work, then bench, then the
+   Lilliebridge accessories. */
+function lilbBenchDayMap(){
+  const map = {}, byWeek = {};
+  for(const blk of EBN2) (byWeek[blk.w] = byWeek[blk.w] || []).push(blk);
+  for(const w of Object.keys(byWeek)){
+    const sess = byWeek[w].map(b => ({
+      d: b.d,
+      top: Math.max.apply(null, b.sets.map(s => s[0])),
+      reps: b.sets.reduce((a,s)=> a + s[1] * (typeof s[2] === "number" ? s[2] : 1), 0),
+    }));
+    // deload week: nothing heavy enough to need a protected day, so just run the
+    // sessions lightest-first across days 1..n like every other week does
+    if(Math.max.apply(null, sess.map(s => s.top)) < 60){
+      sess.slice().sort((a,b)=> (a.top - b.top) || (a.reps - b.reps))
+          .forEach((s,i)=> map[w + "-" + s.d] = i + 1);
+      continue;
+    }
+    const desc = sess.slice().sort((a,b)=> (b.top - a.top) || (b.reps - a.reps));
+    map[w + "-" + desc[0].d] = 3;                    // heaviest bench -> day 3
+    const rest = desc.slice(1);
+    if(rest.length >= 3) map[w + "-" + rest.pop().d] = 4;   // 4 sessions: lightest -> day 4
+    const asc = rest.sort((a,b)=> (a.top - b.top) || (a.reps - b.reps));
+    if(asc.length === 1) map[w + "-" + asc[0].d] = 2;       // keep day 1 clear
+    else asc.forEach((s,i)=> map[w + "-" + s.d] = i + 1);   // lightest -> 1, heavier -> 2
+  }
+  return map;
+}
+const LILB_BENCH_DAYMAP = lilbBenchDayMap();
+
+function lilbBenchProgram(sqMax, bnMax, dlMax, opts){
+  const lilb  = lilbProgram(sqMax, dlMax, opts).rows;
+  const bench = bench2Program(bnMax, { dayMap:LILB_BENCH_DAYMAP, weekdays:false }).rows;
+  const isAcc = r => String(r.Notes).indexOf("Accessory") === 0;
+  const tagged = [];
+  // rank 0 = squat/deadlift main work, 1 = bench, 2 = accessories
+  lilb.forEach((r,i)=> tagged.push(Object.assign({Rpe:""}, r, {_r:isAcc(r)?2:0, _s:i})));
+  bench.forEach((r,i)=> tagged.push(Object.assign({Rpe:""}, r, {_r:1, _s:i})));
+  tagged.sort((a,b)=> (a.Week-b.Week) || (a.Day-b.Day) || (a._r-b._r) || (a._s-b._s));
+  const rows = tagged.map(t=>{ const {_r,_s,...r} = t; return r; });
+  return { rows,
+    maxLines:[ {label:"Squat 1RM", val:fmtW(sqMax)},
+               {label:"Bench 1RM", val:fmtW(bnMax)},
+               {label:"Deadlift 1RM", val:fmtW(dlMax)} ],
+    weekCount:14 };
+}
+function lilbBenchCleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: lilbStripPct(r.Notes) }));
+}
+function lilbBenchCSV(opts, rows){
+  const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
+  let out="";
+  out += q(["#Program","Lilliebridge SBD 14-Week (Lilliebridge + Bench Peak v2)"]);
+  out += q(["#Name",opts.name]);
+  out += q(["#Block",opts.block]);
+  if(opts.cls) out += q(["#Class",opts.cls]);
+  out += q(["#Max","Squat",fmtW(opts.sqMax)]);
+  out += q(["#Max","Bench",fmtW(opts.bnMax)]);
+  out += q(["#Max","Deadlift",fmtW(opts.dlMax)]);
+  out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","RPE","Notes"]);
+  for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Rpe,r.Notes]);
+  return out;
+}
+
 /* ===================== Emm SBD Peak v1 (combined) ===================== */
 function combinedProgram(sqMax, bnMax, dlMax){
   const liftKey = ex => ex && ex.indexOf("Squat")===0 ? 0 : (ex && ex.indexOf("Bench")===0 ? 1 : 2);
@@ -2604,12 +2935,172 @@ function combinedCSV(opts, rows){
   return out;
 }
 
+/* ===================== Lilliebridge 14-Week (Squat + Deadlift) =====================
+   Transcribed from the Lilliebridge_Program.xlsx sheet (14-week revision). The
+   source is percentage-based, so no reference 1RM is needed — each set is
+   [pct, sets, reps, note] and its weight is pct% of the lifter's own competition
+   1RM for that lift. Every day carries a single main lift, so the exercise lives
+   on the block and decides which accessory block is appended after it. */
+const LILB = [
+  {w:1,d:1,ex:"Squat",sets:[[84,1,1,""],[64,2,5,""],[60,1,7,""],[52,2,5,"HB / Front"]]},
+  {w:1,d:2,ex:"Deadlift",sets:[[56,3,5,"Beltless"]]},
+  {w:1,d:4,ex:"Squat",sets:[[87,1,5,"AMRAP up to 8"],[65,1,4,"Paused"],[60,2,4,"Paused"]]},
+
+  {w:2,d:1,ex:"Squat",sets:[[84,1,1,""],[64,3,5,""],[60,1,7,""]]},
+  {w:2,d:2,ex:"Squat",sets:[[84,1,1,""],[56,3,5,"Paused, beltless"]]},
+  {w:2,d:4,ex:"Deadlift",sets:[[84,1,1,""],[87,1,5,"AMRAP up to 8"],[80,1,5,""]]},
+
+  {w:3,d:1,ex:"Squat",sets:[[84,1,1,""],[64,2,5,""],[60,1,7,""],[52,2,5,"HB / Front"]]},
+  {w:3,d:2,ex:"Deadlift",sets:[[74,1,1,""],[58,3,5,"Paused / deficit, beltless"]]},
+  {w:3,d:4,ex:"Squat",sets:[[84,1,1,""],[90,1,4,"AMRAP minimum 4"],[70,1,4,"Paused"],[66,2,4,"Paused"]]},
+
+  {w:4,d:1,ex:"Squat",sets:[[84,1,1,""],[64,2,5,""],[60,1,6,""],[52,2,6,"HB / Front"]]},
+  {w:4,d:2,ex:"Squat",sets:[[84,1,1,""],[58,3,5,"Paused"]]},
+  {w:4,d:4,ex:"Deadlift",sets:[[84,1,1,""],[90,1,4,"AMRAP minimum 4"],[65,3,6,"Paused"]]},
+
+  {w:5,d:1,ex:"Squat",sets:[[84,1,1,""],[64,2,5,""],[60,1,3,""],[52,1,5,"HB / Front"]]},
+  {w:5,d:2,ex:"Deadlift",sets:[[74,1,1,""],[60,3,5,"Paused / deficit, beltless"]]},
+  {w:5,d:4,ex:"Squat",sets:[[84,1,1,""],[92,1,3,"AMRAP minimum 3"],[70,1,4,"Paused"],[66,2,4,"Paused"]]},
+
+  {w:6,d:1,ex:"Squat",sets:[[84,1,1,""],[64,2,5,""],[60,1,5,""],[52,1,5,"HB / Front"]]},
+  {w:6,d:2,ex:"Squat",sets:[[84,1,1,""],[60,3,5,"Paused"]]},
+  {w:6,d:4,ex:"Deadlift",sets:[[84,1,1,""],[92,1,3,"AMRAP minimum 3"],[65,3,6,"Paused"]]},
+
+  {w:7,d:1,ex:"Squat",sets:[[82,1,1,""],[62,2,5,""],[48,2,5,"HB / Front"]]},
+  {w:7,d:2,ex:"Deadlift",sets:[[72,1,1,""],[62,3,5,"Paused / deficit, beltless"]]},
+  {w:7,d:4,ex:"Squat",sets:[[84,1,1,""],[94,1,2,"AMRAP minimum 2"],[66,1,4,"Paused"],[62,2,4,"Paused"]]},
+
+  {w:8,d:1,ex:"Squat",sets:[[80,1,1,""],[60,2,5,""],[58,1,5,""],[46,1,5,"HB / Front"]]},
+  {w:8,d:2,ex:"Squat",sets:[[84,1,1,""],[62,3,5,"Paused"]]},
+  {w:8,d:4,ex:"Deadlift",sets:[[84,1,1,""],[90,1,2,"AMRAP minimum 2"],[63,3,6,"Paused"]]},
+
+  {w:9,d:1,ex:"Squat",sets:[[80,1,1,""],[60,2,5,""],[48,2,5,"HB / Front"]]},
+  {w:9,d:2,ex:"Deadlift",sets:[[74,1,1,""],[64,3,5,"Paused / deficit, beltless"]]},
+  {w:9,d:4,ex:"Squat",sets:[[84,1,1,""],[96,2,1,""],[68,1,4,"Paused"],[64,2,4,"Paused"]]},
+
+  {w:10,d:1,ex:"Squat",sets:[[78,1,1,""],[58,2,5,""],[56,1,5,""],[45,1,5,"HB / Front"]]},
+  {w:10,d:2,ex:"Squat",sets:[[84,1,1,""],[64,3,5,"Paused"]]},
+  {w:10,d:4,ex:"Deadlift",sets:[[84,1,1,""],[96,2,1,""],[61,3,6,"Paused"]]},
+
+  {w:11,d:1,ex:"Squat",sets:[[78,1,1,""],[58,2,5,""],[45,2,5,"HB / Front"]]},
+  {w:11,d:2,ex:"Deadlift",sets:[[76,1,1,""],[66,3,5,"Paused / deficit, beltless"]]},
+  {w:11,d:4,ex:"Squat",sets:[[84,1,1,""],[98,1,1,""],[70,1,4,"Paused"],[66,2,4,"Paused"]]},
+
+  {w:12,d:1,ex:"Squat",sets:[[76,1,1,""],[56,2,5,""],[54,1,5,""],[45,1,5,"HB / Front"]]},
+  {w:12,d:2,ex:"Squat",sets:[[84,1,1,""],[66,3,5,"Paused"]]},
+  {w:12,d:4,ex:"Deadlift",sets:[[84,1,1,""],[98,1,1,""],[59,3,6,"Paused"]]},
+
+  {w:13,d:1,ex:"Squat",sets:[[84,1,1,""],[92,1,1,""]]},
+  {w:13,d:2,ex:"Deadlift",sets:[[84,1,1,""],[92,1,1,""]]},
+
+  {w:14,d:1,ex:"Squat",sets:[[50,3,2,""]]},
+  {w:14,d:2,ex:"Deadlift",sets:[[50,3,2,""]]},
+];
+/* Day-1 deadlift frequency work. In weeks where the heavy pull sits on day 4, the
+   lifter otherwise pulls only once that week (day 2 is a squat day), so a light
+   speed pull on day 1 evens out frequency without touching the day-4 session.
+   Kept deliberately small: day 1 is 21-29 reps of squatting before the bar is
+   even loaded for pulls, and day 4 already carries paused back-offs at 59-65%.
+   So these are dynamic-effort doubles at 55-65% — under the load where pulling
+   accumulates meaningful systemic fatigue, with 72h before the heavy day. Volume
+   descends as the day-4 top set climbs (87% AMRAP -> 98% single), dropping to
+   pure technique work by week 12. Weeks are derived from the data, not hardcoded. */
+const LILB_DL_D4_WEEKS = new Set(LILB.filter(b => b.d === 4 && b.ex === "Deadlift").map(b => b.w));
+const LILB_DL_FREQ = {
+  2:  { pct:60, sets:5, reps:2 },
+  4:  { pct:62, sets:5, reps:2 },
+  6:  { pct:65, sets:4, reps:2 },
+  8:  { pct:62, sets:4, reps:2 },   // day 4 top set turns into a 90% AMRAP double
+  10: { pct:60, sets:3, reps:2 },   // day 4 is 96% singles — back off
+  12: { pct:55, sets:3, reps:2 },   // day 4 is a 98% single — technique only
+};
+const LILB_FREQ_CUE = "Speed pulls · Frequency work — explosive off the floor, reset each rep, ~90s rest; stop the set if bar speed drops";
+
+/* Accessory work, appended after every main-lift day up to week 11. Keyed by the
+   day's main lift — squat days get the quad/calf block, deadlift days get the
+   posterior chain and back block. Dropped from weeks 12-14 so the heavy singles,
+   taper and deload stay clean. No prescribed load, so Weight stays blank. */
+const LILB_ACC_LAST_WEEK = 11;
+const LILB_ACC = {
+  Squat: [
+    { ex:"Leg Press",           sets:5, reps:"15-20", note:"" },
+    { ex:"Leg Extension",       sets:5, reps:"15-20", note:"" },
+    { ex:"Standing Calf Raise", sets:5, reps:"15-20", note:"Machine — seated is fine too" },
+  ],
+  Deadlift: [
+    { ex:"Romanian Deadlift",     sets:5, reps:"12-15", note:"Light — slow and controlled on the way down, pause 1 second at knee level, then back up to lock out on each rep. Great for lock-out work" },
+    { ex:"Barbell Bent-Over Row", sets:5, reps:"15-20", note:"No straps" },
+    { ex:"Hamstring Leg Curl",    sets:5, reps:15,      note:"" },
+  ],
+};
+function lilbProgram(sqMax, dlMax, opts){
+  const withAcc  = !opts || opts.accessories !== false;
+  const withFreq = !opts || opts.dlFrequency !== false;
+  const round = w => Math.round(w/2.5)*2.5;
+  const rows = [];
+  for(const blk of LILB){
+    const max = blk.ex === "Deadlift" ? dlMax : sqMax;
+    for(const [pct, sets, reps, note] of blk.sets){
+      const parts = [];
+      if(note) parts.push(note);
+      parts.push(`${pct}% 1RM`);
+      rows.push({ Week:blk.w, Day:blk.d, Exercise:blk.ex,
+                  "Weight (kg)":fmtW(round(pct/100 * max)),
+                  Sets:sets, Reps:reps, Notes:parts.join(" · ") });
+    }
+    // extra day-1 pull, only in weeks whose heavy deadlift falls on day 4
+    const fq = LILB_DL_FREQ[blk.w];
+    if(withFreq && fq && blk.d === 1 && blk.ex === "Squat" && LILB_DL_D4_WEEKS.has(blk.w)){
+      rows.push({ Week:blk.w, Day:blk.d, Exercise:"Deadlift",
+                  "Weight (kg)":fmtW(round(fq.pct/100 * dlMax)),
+                  Sets:fq.sets, Reps:fq.reps,
+                  Notes:`${LILB_FREQ_CUE} · ${fq.pct}% 1RM` });
+    }
+    if(withAcc && blk.w <= LILB_ACC_LAST_WEEK){
+      for(const a of (LILB_ACC[blk.ex] || [])){
+        rows.push({ Week:blk.w, Day:blk.d, Exercise:a.ex, "Weight (kg)":"",
+                    Sets:a.sets, Reps:a.reps,
+                    Notes:["Accessory"].concat(a.note ? [a.note] : []).join(" · ") });
+      }
+    }
+  }
+  return { rows,
+    maxLines:[ {label:"Squat 1RM", val:fmtW(sqMax)},
+               {label:"Deadlift 1RM", val:fmtW(dlMax)} ],
+    weekCount:14 };
+}
+// strip the "% 1RM" calculation from a note, keeping the coaching cue
+function lilbStripPct(note){
+  let s = String(note);
+  s = s.replace(/\d+(?:\.\d+)?%\s*1RM/g, "");
+  s = s.replace(/\s*·\s*/g, " · ");
+  s = s.replace(/(?:\s*·\s*)+/g, " · ");
+  s = s.replace(/^\s*·\s*/, "").replace(/\s*·\s*$/, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+function lilbCleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: lilbStripPct(r.Notes) }));
+}
+function lilbCSV(opts, rows){
+  const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
+  let out="";
+  out += q(["#Program","Lilliebridge 14-Week (Squat + Deadlift)"]);
+  out += q(["#Name",opts.name]);
+  out += q(["#Block",opts.block]);
+  if(opts.cls) out += q(["#Class",opts.cls]);
+  out += q(["#Max","Squat",fmtW(opts.sqMax)]);
+  out += q(["#Max","Deadlift",fmtW(opts.dlMax)]);
+  out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","Notes"]);
+  for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Notes]);
+  return out;
+}
+
 /* ===================== shared preview engine ===================== */
 function escapeHTML(s){ return String(s).replace(/[&<>]/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c])); }
 function sanitize(s){ return (s||"").trim().replace(/[^\w.-]+/g,"_").replace(/^_+|_+$/g,""); }
 
 let ctx = null;                          // active preview context
-const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null, combined:null }; // last-built context per generator
+const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null, combined:null, lilliebridge:null, bench2:null, lilliesbd:null }; // last-built context per generator
 
 function splitCSV(text){
   // -> { meta:[raw # lines], header:[cells], body:[[cells]...], idx:{col->index} }
@@ -2756,6 +3247,9 @@ const EMPTY_TXT = {
   squat:   { big:"No block yet",  sub:"Enter a squat 1RM, then build the 8-week squat peak." },
   bench:   { big:"No block yet",  sub:"Enter a bench 1RM, then build the 8-week bench peak." },
   combined:{ big:"No program yet", sub:"Enter squat, bench &amp; deadlift 1RMs, then build the combined SBD peak." },
+  bench2:  { big:"No block yet",  sub:"Enter a bench 1RM, then build the 14-week bench peak." },
+  lilliesbd:{ big:"No program yet", sub:"Enter squat, bench &amp; deadlift 1RMs, then build the 14-week Lilliebridge SBD program." },
+  lilliebridge:{ big:"No block yet", sub:"Enter squat &amp; deadlift 1RMs, then build the 14-week Lilliebridge block." },
 };
 function showView(name){
   document.querySelectorAll(".view").forEach(v=> v.classList.remove("active"));
@@ -3127,6 +3621,154 @@ function combinedReset(){
   $("cb-name").focus();
 }
 
+function buildBench2(){
+  const max = parseFloat($("b2-max").value);
+  const f = $("b2-max").closest(".field");
+  const ok = Number.isFinite(max) && max>0;
+  f.classList.toggle("invalid", !ok);
+  if(!ok){ $("b2-msg").textContent = "Enter the bench 1RM in kg."; return; }
+  $("b2-msg").textContent = "";
+  const name  = $("b2-name").value.trim()  || "Lifter";
+  const block = $("b2-block").value.trim() || "Bench Peak v2";
+  const cls   = $("b2-class").value.trim();
+  const opts  = { name, block, cls, max };
+  const built    = bench2Program(max);
+  const fullCSV  = bench2CSV(opts, built.rows);
+  const cleanCSV = bench2CSV(opts, bench2CleanRows(built.rows));   // % 1RM removed from notes
+  const c = {
+    program:"bench2",
+    meta:{ name, block, cls, maxLines: built.maxLines },
+    variants:[ {id:"program", label:"Program", csv:fullCSV,  showRPE:true, suffix:""},
+               {id:"clean",   label:"Clean",   csv:cleanCSV, showRPE:true, suffix:"_clean"} ],
+    active:"program", weekCount:14, mapTitle:"Block map",
+    phaseOf:(w)=> w<=6 ? "build" : (w<=10 ? "develop" : (w<=13 ? "peak" : "deload")),
+    ribbon:[
+      {label:"Accumulation",     dotColor:"var(--build)",        weeks:[1,2,3,4,5,6]},
+      {label:"Intensify",        dotColor:"var(--develop)",      weeks:[7,8,9,10]},
+      {label:"Overreach & peak", dotColor:"var(--peak)",         weeks:[11,12]},
+      {label:"Taper · opener",   dotColor:"var(--peak)",         weeks:[13]},
+      {label:"Deload",           dotColor:"var(--deload-badge)", weeks:[14]},
+    ],
+    weekTitle:(w)=> w===14 ? "Week 14 · deload" : (w===13 ? "Week 13 · taper & opener" : `Week ${w}`),
+  };
+  CTX.bench2 = c;
+  $("b2-reset").style.display = "inline-block";
+  mountCtx(c, true);
+}
+function bench2Reset(){
+  ["b2-name","b2-block","b2-class","b2-max"].forEach(id=> $(id).value="");
+  document.querySelectorAll("#view-bench2 .field.invalid").forEach(f=> f.classList.remove("invalid"));
+  CTX.bench2 = null; ctx = null;
+  $("b2-reset").style.display = "none"; $("b2-msg").textContent = "";
+  $("results").style.display = "none"; $("empty").style.display = "block";
+  $("empty").innerHTML = `<div class="big">${EMPTY_TXT.bench2.big}</div>${EMPTY_TXT.bench2.sub}`;
+  $("b2-name").focus();
+}
+
+function buildLilliebridge(){
+  const sqMax = parseFloat($("lb-squat").value);
+  const dlMax = parseFloat($("lb-dead").value);
+  let ok = true;
+  [["lb-squat",sqMax],["lb-dead",dlMax]].forEach(([id,v])=>{
+    const good = Number.isFinite(v) && v>0;
+    $(id).closest(".field").classList.toggle("invalid", !good);
+    if(!good) ok = false;
+  });
+  if(!ok){ $("lb-msg").textContent = "Enter both the squat and deadlift 1RM in kg."; return; }
+  $("lb-msg").textContent = "";
+  const name  = $("lb-name").value.trim()  || "Lifter";
+  const block = $("lb-block").value.trim() || "Lilliebridge 14-Week";
+  const cls   = $("lb-class").value.trim();
+  const accessories = $("lb-acc").checked;
+  const dlFrequency = $("lb-freq").checked;
+  const opts  = { name, block, cls, sqMax, dlMax, accessories, dlFrequency };
+  const built    = lilbProgram(sqMax, dlMax, opts);
+  const fullCSV  = lilbCSV(opts, built.rows);
+  const cleanCSV = lilbCSV(opts, lilbCleanRows(built.rows));   // % 1RM removed from notes
+  const c = {
+    program:"lilliebridge",
+    meta:{ name, block, cls, maxLines: built.maxLines },
+    variants:[ {id:"program", label:"Program", csv:fullCSV,  showRPE:false, suffix:""},
+               {id:"clean",   label:"Clean",   csv:cleanCSV, showRPE:false, suffix:"_clean"} ],
+    active:"program", weekCount:14, mapTitle:"Block map",
+    phaseOf:(w)=> w<=4 ? "build" : (w<=8 ? "develop" : (w<=13 ? "peak" : "deload")),
+    ribbon:[
+      {label:"Volume waves · 87–90%", dotColor:"var(--build)",        weeks:[1,2,3,4]},
+      {label:"Intensify · 92–94%",    dotColor:"var(--develop)",      weeks:[5,6,7,8]},
+      {label:"Heavy singles · 96–98%",dotColor:"var(--peak)",         weeks:[9,10,11,12]},
+      {label:"Taper · 92%",           dotColor:"var(--peak)",         weeks:[13]},
+      {label:"Deload · 50%",          dotColor:"var(--deload-badge)", weeks:[14]},
+    ],
+    weekTitle:(w)=> w===14 ? "Week 14 · deload" : (w===13 ? "Week 13 · taper" : `Week ${w}`),
+  };
+  CTX.lilliebridge = c;
+  $("lb-reset").style.display = "inline-block";
+  mountCtx(c, true);
+}
+function lilliebridgeReset(){
+  ["lb-name","lb-block","lb-class","lb-squat","lb-dead"].forEach(id=> $(id).value="");
+  $("lb-acc").checked = true;
+  $("lb-freq").checked = true;
+  document.querySelectorAll("#view-lilliebridge .field.invalid").forEach(f=> f.classList.remove("invalid"));
+  CTX.lilliebridge = null; ctx = null;
+  $("lb-reset").style.display = "none"; $("lb-msg").textContent = "";
+  $("results").style.display = "none"; $("empty").style.display = "block";
+  $("empty").innerHTML = `<div class="big">${EMPTY_TXT.lilliebridge.big}</div>${EMPTY_TXT.lilliebridge.sub}`;
+  $("lb-name").focus();
+}
+
+function buildLillieSBD(){
+  const sqMax = parseFloat($("ls-squat").value);
+  const bnMax = parseFloat($("ls-bench").value);
+  const dlMax = parseFloat($("ls-dead").value);
+  let ok = true;
+  [["ls-squat",sqMax],["ls-bench",bnMax],["ls-dead",dlMax]].forEach(([id,v])=>{
+    const good = Number.isFinite(v) && v>0;
+    $(id).closest(".field").classList.toggle("invalid", !good);
+    if(!good) ok = false;
+  });
+  if(!ok){ $("ls-msg").textContent = "Enter all three 1RMs in kg."; return; }
+  $("ls-msg").textContent = "";
+  const name  = $("ls-name").value.trim()  || "Lifter";
+  const block = $("ls-block").value.trim() || "Lilliebridge SBD";
+  const cls   = $("ls-class").value.trim();
+  const accessories = $("ls-acc").checked;
+  const dlFrequency = $("ls-freq").checked;
+  const opts  = { name, block, cls, sqMax, bnMax, dlMax, accessories, dlFrequency };
+  const built    = lilbBenchProgram(sqMax, bnMax, dlMax, opts);
+  const fullCSV  = lilbBenchCSV(opts, built.rows);
+  const cleanCSV = lilbBenchCSV(opts, lilbBenchCleanRows(built.rows));
+  const c = {
+    program:"lilliesbd",
+    meta:{ name, block, cls, maxLines: built.maxLines },
+    variants:[ {id:"program", label:"Program", csv:fullCSV,  showRPE:true, suffix:""},
+               {id:"clean",   label:"Clean",   csv:cleanCSV, showRPE:true, suffix:"_clean"} ],
+    active:"program", weekCount:14, mapTitle:"Program map",
+    phaseOf:(w)=> w<=4 ? "build" : (w<=10 ? "develop" : (w<=13 ? "peak" : "deload")),
+    ribbon:[
+      {label:"Accumulation",   dotColor:"var(--build)",        weeks:[1,2,3,4]},
+      {label:"Development",    dotColor:"var(--develop)",      weeks:[5,6,7,8,9,10]},
+      {label:"Peak",           dotColor:"var(--peak)",         weeks:[11,12]},
+      {label:"Taper · opener", dotColor:"var(--peak)",         weeks:[13]},
+      {label:"Deload",         dotColor:"var(--deload-badge)", weeks:[14]},
+    ],
+    weekTitle:(w)=> w===14 ? "Week 14 · deload" : (w===13 ? "Week 13 · taper & opener" : `Week ${w}`),
+  };
+  CTX.lilliesbd = c;
+  $("ls-reset").style.display = "inline-block";
+  mountCtx(c, true);
+}
+function lillieSBDReset(){
+  ["ls-name","ls-block","ls-class","ls-squat","ls-bench","ls-dead"].forEach(id=> $(id).value="");
+  $("ls-acc").checked = true; $("ls-freq").checked = true;
+  document.querySelectorAll("#view-lilliesbd .field.invalid").forEach(f=> f.classList.remove("invalid"));
+  CTX.lilliesbd = null; ctx = null;
+  $("ls-reset").style.display = "none"; $("ls-msg").textContent = "";
+  $("results").style.display = "none"; $("empty").style.display = "block";
+  $("empty").innerHTML = `<div class="big">${EMPTY_TXT.lilliesbd.big}</div>${EMPTY_TXT.lilliesbd.sub}`;
+  $("ls-name").focus();
+}
+
 /* ===================== bindings ===================== */
 document.querySelectorAll("[data-go]").forEach(el=> el.onclick = ()=> showView(el.dataset.go));
 $("btn-generate").onclick = buildGustav;
@@ -3143,6 +3785,12 @@ $("bn-generate").onclick  = buildBench;
 $("bn-reset").onclick     = benchReset;
 $("cb-generate").onclick  = buildCombined;
 $("cb-reset").onclick     = combinedReset;
+$("b2-generate").onclick  = buildBench2;
+$("b2-reset").onclick     = bench2Reset;
+$("ls-generate").onclick  = buildLillieSBD;
+$("ls-reset").onclick     = lillieSBDReset;
+$("lb-generate").onclick  = buildLilliebridge;
+$("lb-reset").onclick     = lilliebridgeReset;
 $("btn-export").onclick   = exportActive;
 $("chip-all").onclick     = ()=>{ if(!ctx) return; ctx.week=null; syncRibbon(); renderPreview(); };
 
@@ -3166,6 +3814,9 @@ const DL_FIELDS      = ["d-name","d-block","d-class","d-max"];
 const SQUAT_FIELDS   = ["sq-name","sq-block","sq-class","sq-max"];
 const BENCH_FIELDS   = ["bn-name","bn-block","bn-class","bn-max"];
 const COMBO_FIELDS   = ["cb-name","cb-block","cb-class","cb-squat","cb-bench","cb-dead"];
+const LILB_FIELDS    = ["lb-name","lb-block","lb-class","lb-squat","lb-dead"];
+const BENCH2_FIELDS  = ["b2-name","b2-block","b2-class","b2-max"];
+const LSBD_FIELDS    = ["ls-name","ls-block","ls-class","ls-squat","ls-bench","ls-dead"];
 document.addEventListener("keydown", e=>{
   if(e.key !== "Enter") return;
   const id = document.activeElement.id;
@@ -3176,6 +3827,9 @@ document.addEventListener("keydown", e=>{
   else if(SQUAT_FIELDS.includes(id)) buildSquat();
   else if(BENCH_FIELDS.includes(id)) buildBench();
   else if(COMBO_FIELDS.includes(id)) buildCombined();
+  else if(LILB_FIELDS.includes(id)) buildLilliebridge();
+  else if(BENCH2_FIELDS.includes(id)) buildBench2();
+  else if(LSBD_FIELDS.includes(id)) buildLillieSBD();
 });
 
 /* ===================== theme (light / dark) ===================== */
