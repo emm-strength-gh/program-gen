@@ -21,6 +21,7 @@
     --lilb:#D9663F;
     --bnpk2:#6C7BE0;
     --lsbd:#B849B0;
+    --ksb:#2FA88C;
     --build-dim:#28365a; --develop-dim:#54472a; --peak-dim:#54322a;
     --build-ink:#cdd9f4; --develop-ink:#f0dcaf; --peak-ink:#f3c2b8;
     --good:#5FB37A;
@@ -36,7 +37,7 @@
   :root[data-theme="light"]{
     --bg:#F1F2F5; --panel:#FFFFFF; --panel-2:#EAECEF; --hair:#DADDE2;
     --ink:#1B1E24; --muted:#5B626D; --muted-2:#949AA4;
-    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52; --sbd:#B0821F; --lilb:#C4552F; --bnpk2:#4E5DC4; --lsbd:#9A3A94;
+    --build:#3B6BD0; --develop:#B5791A; --peak:#D2402B; --wend:#2C86A8; --equip:#7E5FC0; --dlpk:#1E8E80; --sqpk:#C04E86; --bnpk:#3F8A52; --sbd:#B0821F; --lilb:#C4552F; --bnpk2:#4E5DC4; --lsbd:#9A3A94; --ksb:#227A65;
     --build-dim:#DCE6FA; --develop-dim:#F5E6C4; --peak-dim:#F7D8D1;
     --build-ink:#274a88; --develop-ink:#6c4c0d; --peak-ink:#8c2c1d;
     --good:#3E9E63;
@@ -264,6 +265,7 @@
   .btn-lilb{background:var(--lilb)}
   .btn-bnpk2{background:var(--bnpk2)}
   .btn-lsbd{background:var(--lsbd)}
+  .btn-ksb{background:var(--ksb)}
   #view-lilliebridge .opt input[type=checkbox]{accent-color:var(--lilb)}
   #view-equipped .view-title .slash{color:var(--equip)}
   #view-deadlift .view-title .slash{color:var(--dlpk)}
@@ -274,6 +276,7 @@
   #view-bench2 .view-title .slash{color:var(--bnpk2)}
   #view-lilliesbd .view-title .slash{color:var(--lsbd)}
   #view-lilliesbd .opt input[type=checkbox]{accent-color:var(--lsbd)}
+  #view-ksb .view-title .slash{color:var(--ksb)}
 </style>
 </head>
 <body>
@@ -339,6 +342,13 @@
         <h3>Emm Bench Peak v2</h3>
         <p>A 14-week rebuild of the v1 bench peak. Paired accumulation micro-blocks, an intensification run of rising top singles, a four-session overreach week with a tempo-to-fail AMRAP above 100%, then the peak — closing with a week 13 taper that tests the opener and a week 14 deload. Includes a Clean export that hides the percentages.</p>
         <span class="btn-primary gc-go btn-bnpk2">Open builder</span>
+      </button>
+      <button class="gen-card" data-go="ksb">
+        <span class="accent" style="background:linear-gradient(90deg,var(--ksb),var(--bnpk2))"></span>
+        <span class="gc-tag">Bench only · 4 weeks</span>
+        <h3>Ks Gym Bench</h3>
+        <p>A 4-week bench specialization block: a top-double-plus-volume day, a single-set volume day, an overload day running RPE singles into Slingshot/Block singles, then a moderate triples/fives day. Weeks 1 and 3 repeat the same heavy wave with week 2 as a lighter dip between them, and week 4 tapers everything down. Includes a Clean export that hides the percentages.</p>
+        <span class="btn-primary gc-go btn-ksb">Open builder</span>
       </button>
       <button class="gen-card" data-go="combined">
         <span class="accent" style="background:linear-gradient(90deg,var(--sqpk),var(--bnpk),var(--dlpk))"></span>
@@ -600,6 +610,35 @@
         <button class="btn-primary btn-sbd" id="cb-generate">Build the program</button>
         <button class="btn-ghost" id="cb-reset" style="display:none">Clear</button>
         <span class="msg" id="cb-msg"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== KS GYM BENCH ===================== -->
+  <div class="view" id="view-ksb">
+    <button class="backlink" data-go="hub">&larr; All builders</button>
+    <h2 class="view-title">Ks Gym Bench <span class="slash">/</span> 4-Week</h2>
+    <p class="view-sub">A 4-week bench-only specialization block, days 1&ndash;4 every week. Day 1 is a top double plus back-off volume, day 2 is single-set volume work, day 3 is the overload day &mdash; RPE 8&ndash;9 singles building into Slingshot or Block overload singles, then light form work &mdash; and day 4 is moderate triples and fives. Weeks 1 and 3 repeat the same heavy wave with week 2 as a lighter dip between them, and week 4 tapers everything down. Enter a bench 1RM and every set's weight is scaled from its programmed percentage, rounded to 2.5kg. The <strong>Clean</strong> version exports the same program with the percentages stripped from the notes, so the lifter never sees how it was calculated.</p>
+    <div class="legend">
+      <span><i class="dot" style="background:var(--build)"></i>Heavy wave · wk 1, 3</span>
+      <span><i class="dot" style="background:var(--develop)"></i>Light wave · wk 2</span>
+      <span><i class="dot" style="background:var(--deload-badge)"></i>Taper · wk 4</span>
+    </div>
+    <div class="card" style="margin-top:18px">
+      <div class="card-head">
+        <h2>Lifter &amp; bench 1RM</h2>
+        <span class="hint">kg · weights = % × 1RM</span>
+      </div>
+      <div class="grid">
+        <div class="field span"><label>Name</label><input id="ksb-name" type="text" placeholder="e.g. Emm"></div>
+        <div class="field"><label>Block</label><input id="ksb-block" type="text" placeholder="e.g. Ks Gym Bench"></div>
+        <div class="field"><label>Class</label><input id="ksb-class" type="text" placeholder="e.g. 74kg"></div>
+        <div class="field"><label>Bench 1RM <span class="unit">kg</span></label><input id="ksb-max" class="maxin" type="number" inputmode="decimal" placeholder="165"></div>
+      </div>
+      <div class="row-actions">
+        <button class="btn-primary btn-ksb" id="ksb-generate">Build the block</button>
+        <button class="btn-ghost" id="ksb-reset" style="display:none">Clear</button>
+        <span class="msg" id="ksb-msg"></span>
       </div>
     </div>
   </div>
@@ -2484,6 +2523,23 @@ function equippedHeaderLines(opts){
   }
   return L;
 }
+// strip the leading "N% · " calculation token from a note, keeping the gear /
+// reference / coaching text intact. Also catches stray percentages inside a
+// cue (e.g. "well under 60%"), since the brief is no percentages anywhere.
+function equippedStripPct(note){
+  let s = String(note);
+  s = s.replace(/\d+(?:\.\d+)?%/g, "");
+  s = s.replace(/\s*·\s*/g, " · ");
+  s = s.replace(/(?:\s*·\s*)+/g, " · ");
+  s = s.replace(/^\s*·\s*/, "").replace(/\s*·\s*$/, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+// Clean variant: no percentages in Notes, and RPE column blanked on every row
+// (not just the main lifts) — same 8 columns, just nothing that hints at how
+// the load or effort target was calculated.
+function equippedCleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: equippedStripPct(r.Notes), Rpe: "" }));
+}
 function equippedCSV(opts, rows){
   const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
   let out="";
@@ -2694,6 +2750,77 @@ function benchCSV(opts, rows){
   out += q(["#Max","Bench",fmtW(opts.max)]);
   out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","RPE","Notes"]);
   for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Rpe,r.Notes]);
+  return out;
+}
+
+/* ===================== Ks Gym Bench (4 weeks) =====================
+   Transcribed directly from the Intense_Bench.xlsx source sheet: a 4-week
+   bench specialization block, days 1-4 every week. Weeks 1 and 3 are
+   identical heavy waves; week 2 is a lighter dip (~90% of wk1/3 loads) between
+   them; week 4 tapers everything down (~80% of wk1/3) rather than a true
+   deload. Day 1 is a top double plus back-off volume, day 2 is single-set
+   volume, day 3 is the overload day (RPE singles into Slingshot/Block
+   overload singles, then light form work), day 4 is moderate triples/fives.
+   No accessories or dedicated RPE column in the source — RPE targets that
+   exist live as text inside Notes (e.g. "(RPE 9-10)"). */
+const KSB = [
+  {w:1,d:1,sets:[[80,1,1,"Warm up to"],[87,2,2,"Doubles (RPE 9-10)"],[66,4,6,"Sixes (2-4 sets)"]]},
+  {w:1,d:2,sets:[[86,1,1,"Warm up to"],[70,4,4,"(2-4 sets)"]]},
+  {w:1,d:3,sets:[[86,1,1,"Warm up to"],[90,2,1,"(RPE 8-9)"],[95,2,1,"(RPE 8-9)"],[102,1,1,"Slingshot/Block"],[106,1,1,"Slingshot/Block"],[70,3,5,"Form"]]},
+  {w:1,d:4,sets:[[80,1,1,"Warm up to"],[83,3,3,"Triples"],[70,3,5,"Fives (3-5 sets)"]]},
+
+  {w:2,d:1,sets:[[72,1,1,"Warm up to"],[79,2,2,"Doubles (RPE 9-10)"],[58,4,6,"Sixes (2-4 sets)"]]},
+  {w:2,d:2,sets:[[78,1,1,"Warm up to"],[62,4,4,"(2-4 sets)"]]},
+  {w:2,d:3,sets:[[78,1,1,"Warm up to"],[82,2,1,"(RPE 8-9)"],[87,2,1,"(RPE 8-9)"],[94,1,1,"Slingshot/Block"],[98,1,1,"Slingshot/Block"],[62,3,5,"Form"]]},
+  {w:2,d:4,sets:[[72,1,1,"Warm up to"],[75,3,3,"Triples"],[62,3,5,"Fives (3-5 sets)"]]},
+
+  {w:3,d:1,sets:[[80,1,1,"Warm up to"],[87,2,2,"Doubles (RPE 9-10)"],[66,4,6,"Sixes (2-4 sets)"]]},
+  {w:3,d:2,sets:[[86,1,1,"Warm up to"],[70,4,4,"(2-4 sets)"]]},
+  {w:3,d:3,sets:[[86,1,1,"Warm up to"],[90,2,1,"(RPE 8-9)"],[95,2,1,"(RPE 8-9)"],[102,1,1,"Slingshot/Block"],[106,1,1,"Slingshot/Block"],[70,3,5,"Form"]]},
+  {w:3,d:4,sets:[[80,1,1,"Warm up to"],[83,3,3,"Triples"],[70,3,5,"Fives (3-5 sets)"]]},
+
+  {w:4,d:1,sets:[[64,1,1,"Warm up to"],[71,2,2,"Doubles (RPE 9-10)"],[50,4,6,"Sixes (2-4 sets)"]]},
+  {w:4,d:2,sets:[[70,1,1,"Warm up to"],[54,4,4,"(2-4 sets)"]]},
+  {w:4,d:3,sets:[[70,1,1,"Warm up to"],[74,2,1,"(RPE 8-9)"],[79,2,1,"(RPE 8-9)"],[86,1,1,"Slingshot/Block"],[90,1,1,"Slingshot/Block"],[54,3,5,"Form"]]},
+  {w:4,d:4,sets:[[64,1,1,"Warm up to"],[67,3,3,"Triples"],[54,3,5,"Fives (3-5 sets)"]]},
+];
+function ksbProgram(max){
+  const round = w => Math.round(w/2.5)*2.5;
+  const rows = [];
+  for(const blk of KSB){
+    for(const [pct, sets, reps, note] of blk.sets){
+      const parts = [];
+      if(note) parts.push(note);
+      parts.push(`${pct}% 1RM`);
+      rows.push({ Week:blk.w, Day:blk.d, Exercise:"Bench",
+                  "Weight (kg)":fmtW(round(pct/100 * max)),
+                  Sets:sets, Reps:reps, Notes:parts.join(" · ") });
+    }
+  }
+  return { rows, maxLines:[{label:"Bench 1RM", val:fmtW(max)}], weekCount:4 };
+}
+// strip the "% 1RM" calculation from a note, keeping the coaching cue
+function ksbStripPct(note){
+  let s = String(note);
+  s = s.replace(/\d+(?:\.\d+)?%\s*1RM/g, "");
+  s = s.replace(/\s*·\s*/g, " · ");
+  s = s.replace(/(?:\s*·\s*)+/g, " · ");
+  s = s.replace(/^\s*·\s*/, "").replace(/\s*·\s*$/, "");
+  return s.replace(/\s+/g, " ").trim();
+}
+function ksbCleanRows(rows){
+  return rows.map(r => Object.assign({}, r, { Notes: ksbStripPct(r.Notes) }));
+}
+function ksbCSV(opts, rows){
+  const q = v => csvRow([v[0]||"",v[1]||"",v[2]||"",v[3]||"",v[4]||"",v[5]||"",v[6]||""]);
+  let out="";
+  out += q(["#Program","Ks Gym Bench (4 weeks)"]);
+  out += q(["#Name",opts.name]);
+  out += q(["#Block",opts.block]);
+  if(opts.cls) out += q(["#Class",opts.cls]);
+  out += q(["#Max","Bench",fmtW(opts.max)]);
+  out += csvRow(["Week","Day","Exercise","Weight (kg)","Sets","Reps","Notes"]);
+  for(const r of rows) out += csvRow([r.Week,r.Day,r.Exercise,r["Weight (kg)"],r.Sets,r.Reps,r.Notes]);
   return out;
 }
 
@@ -3100,7 +3227,7 @@ function escapeHTML(s){ return String(s).replace(/[&<>]/g, c=>({ "&":"&amp;","<"
 function sanitize(s){ return (s||"").trim().replace(/[^\w.-]+/g,"_").replace(/^_+|_+$/g,""); }
 
 let ctx = null;                          // active preview context
-const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null, combined:null, lilliebridge:null, bench2:null, lilliesbd:null }; // last-built context per generator
+const CTX = { gustav:null, wendler:null, equipped:null, deadlift:null, squat:null, bench:null, combined:null, lilliebridge:null, bench2:null, lilliesbd:null, ksb:null }; // last-built context per generator
 
 function splitCSV(text){
   // -> { meta:[raw # lines], header:[cells], body:[[cells]...], idx:{col->index} }
@@ -3247,6 +3374,7 @@ const EMPTY_TXT = {
   squat:   { big:"No block yet",  sub:"Enter a squat 1RM, then build the 8-week squat peak." },
   bench:   { big:"No block yet",  sub:"Enter a bench 1RM, then build the 8-week bench peak." },
   combined:{ big:"No program yet", sub:"Enter squat, bench &amp; deadlift 1RMs, then build the combined SBD peak." },
+  ksb:     { big:"No block yet",  sub:"Enter a bench 1RM, then build the 4-week Ks Gym Bench block." },
   bench2:  { big:"No block yet",  sub:"Enter a bench 1RM, then build the 14-week bench peak." },
   lilliesbd:{ big:"No program yet", sub:"Enter squat, bench &amp; deadlift 1RMs, then build the 14-week Lilliebridge SBD program." },
   lilliebridge:{ big:"No block yet", sub:"Enter squat &amp; deadlift 1RMs, then build the 14-week Lilliebridge block." },
@@ -3417,15 +3545,17 @@ function buildEquipped(){
             eqS:vals["e-esquat"],  eqB:vals["e-ebench"],  eqD:vals["e-edead"] },
   };
   const built = equippedProgram(opts);
-  const fullCSV = equippedCSV(opts, built.rows);
-  const mainCSV = equippedCSV(opts, built.mainRows);
+  const fullCSV  = equippedCSV(opts, built.rows);
+  const mainCSV  = equippedCSV(opts, built.mainRows);
+  const cleanCSV = equippedCSV(opts, equippedCleanRows(built.rows));   // % + RPE stripped from notes, RPE column blanked
 
   const c = {
     program:"equipped",
     meta:{ name, block, cls, maxLines: built.maxLines },
     variants:[
-      {id:"full", label:"Full",      csv:fullCSV, showRPE:true, suffix:""},
-      {id:"main", label:"Main sets", csv:mainCSV, showRPE:true, suffix:"_main"},
+      {id:"full",  label:"Full",      csv:fullCSV,  showRPE:true, suffix:""},
+      {id:"main",  label:"Main sets", csv:mainCSV,  showRPE:true, suffix:"_main"},
+      {id:"clean", label:"Clean",     csv:cleanCSV, showRPE:true, suffix:"_clean"},
     ],
     active:"full", weekCount:12, mapTitle:"Phase map",
     phaseOf:(w)=> w<=4 ? "build" : (w<=8 ? "develop" : (w<=11 ? "peak" : "deload")),
@@ -3769,6 +3899,48 @@ function lillieSBDReset(){
   $("ls-name").focus();
 }
 
+function buildKsb(){
+  const max = parseFloat($("ksb-max").value);
+  const f = $("ksb-max").closest(".field");
+  const ok = Number.isFinite(max) && max>0;
+  f.classList.toggle("invalid", !ok);
+  if(!ok){ $("ksb-msg").textContent = "Enter the bench 1RM in kg."; return; }
+  $("ksb-msg").textContent = "";
+  const name  = $("ksb-name").value.trim()  || "Lifter";
+  const block = $("ksb-block").value.trim() || "Ks Gym Bench";
+  const cls   = $("ksb-class").value.trim();
+  const opts  = { name, block, cls, max };
+  const built    = ksbProgram(max);
+  const fullCSV  = ksbCSV(opts, built.rows);
+  const cleanCSV = ksbCSV(opts, ksbCleanRows(built.rows));   // % 1RM removed from notes
+  const c = {
+    program:"ksb",
+    meta:{ name, block, cls, maxLines: built.maxLines },
+    variants:[ {id:"program", label:"Program", csv:fullCSV,  showRPE:false, suffix:""},
+               {id:"clean",   label:"Clean",   csv:cleanCSV, showRPE:false, suffix:"_clean"} ],
+    active:"program", weekCount:4, mapTitle:"Block map",
+    phaseOf:(w)=> w===2 ? "develop" : (w===4 ? "deload" : "build"),
+    ribbon:[
+      {label:"Heavy wave", dotColor:"var(--build)",        weeks:[1,3]},
+      {label:"Light wave", dotColor:"var(--develop)",      weeks:[2]},
+      {label:"Taper",      dotColor:"var(--deload-badge)", weeks:[4]},
+    ],
+    weekTitle:(w)=> w===4 ? "Week 4 · taper" : `Week ${w}`,
+  };
+  CTX.ksb = c;
+  $("ksb-reset").style.display = "inline-block";
+  mountCtx(c, true);
+}
+function ksbReset(){
+  ["ksb-name","ksb-block","ksb-class","ksb-max"].forEach(id=> $(id).value="");
+  document.querySelectorAll("#view-ksb .field.invalid").forEach(f=> f.classList.remove("invalid"));
+  CTX.ksb = null; ctx = null;
+  $("ksb-reset").style.display = "none"; $("ksb-msg").textContent = "";
+  $("results").style.display = "none"; $("empty").style.display = "block";
+  $("empty").innerHTML = `<div class="big">${EMPTY_TXT.ksb.big}</div>${EMPTY_TXT.ksb.sub}`;
+  $("ksb-name").focus();
+}
+
 /* ===================== bindings ===================== */
 document.querySelectorAll("[data-go]").forEach(el=> el.onclick = ()=> showView(el.dataset.go));
 $("btn-generate").onclick = buildGustav;
@@ -3785,6 +3957,8 @@ $("bn-generate").onclick  = buildBench;
 $("bn-reset").onclick     = benchReset;
 $("cb-generate").onclick  = buildCombined;
 $("cb-reset").onclick     = combinedReset;
+$("ksb-generate").onclick = buildKsb;
+$("ksb-reset").onclick    = ksbReset;
 $("b2-generate").onclick  = buildBench2;
 $("b2-reset").onclick     = bench2Reset;
 $("ls-generate").onclick  = buildLillieSBD;
@@ -3816,6 +3990,7 @@ const BENCH_FIELDS   = ["bn-name","bn-block","bn-class","bn-max"];
 const COMBO_FIELDS   = ["cb-name","cb-block","cb-class","cb-squat","cb-bench","cb-dead"];
 const LILB_FIELDS    = ["lb-name","lb-block","lb-class","lb-squat","lb-dead"];
 const BENCH2_FIELDS  = ["b2-name","b2-block","b2-class","b2-max"];
+const KSB_FIELDS     = ["ksb-name","ksb-block","ksb-class","ksb-max"];
 const LSBD_FIELDS    = ["ls-name","ls-block","ls-class","ls-squat","ls-bench","ls-dead"];
 document.addEventListener("keydown", e=>{
   if(e.key !== "Enter") return;
@@ -3829,6 +4004,7 @@ document.addEventListener("keydown", e=>{
   else if(COMBO_FIELDS.includes(id)) buildCombined();
   else if(LILB_FIELDS.includes(id)) buildLilliebridge();
   else if(BENCH2_FIELDS.includes(id)) buildBench2();
+  else if(KSB_FIELDS.includes(id)) buildKsb();
   else if(LSBD_FIELDS.includes(id)) buildLillieSBD();
 });
 
